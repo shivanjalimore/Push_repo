@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tooltips</title>
+    <style>
+        .tooltips
+        {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black;
+        }
+        .tooltiptext
+        {
+            display: none;
+            width: 120px;
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            position: absolute;
+            z-index: 1;
+        }
+        .tooltips:hover .tooltiptext
+        {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="tooltips">Hover Over Me</div>
+       <span class="tooltiptext">Tooltip Text</span>
+</body>
+</html>

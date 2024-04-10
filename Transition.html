@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transition</title>
+    <style>
+        .transition1
+        {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            transition: width 2s,height 2s;
+        
+        }
+        .transition1:hover{
+            width: 300px;
+            height: 300px;
+        }
+        .tt 
+        {
+            background-color: aqua;
+            width: 100px;
+            height: 100px;
+            margin-top: 100px;
+            transition: width 2s,height 2s,transform 2s;
+        }
+        .tt:hover
+        {
+            width: 300px;
+            height: 300px;
+            transform: rotate(360deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="transition1">
+    </div>
+    <div class="tt">
+
+    </div>
+</body>
+</html>
