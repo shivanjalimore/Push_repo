@@ -1,0 +1,139 @@
+2. Change the number of hours for 
+project-1 to 5 for all employees with 
+designation analyst.
+
+{"projects.name":{$ne:"project-1},Desg:"Analyst"}
+$set:{
+db.emp.update({"projects.name":{$ne:"project-1},Desg:"Analyst"},{})
+
+
+
+db.createCollection(emp,{emono:111,ename:"Deepali
+Vaidya",sal:40000.00,dept:{deptno:12,dname:,"Hr",dloc:"Mumbai"},
+Desg:"Analyst",mgr:{name:"Satish",num:111},project:[{name:"Project-
+1",Hrs:4},{name:"project- 2",Hrs:4}]},
+{emono:112,ename:"Raj",sal:20000.00,dept:{deptno:10,dname:,"sinior developer",dloc:"kolhapur"},
+Desg:"Analyst",mgr:{name:"Satish",num:112},project:[{name:"Project-
+1",Hrs:4},{name:"project- 2",Hrs:4}]}
+
+
+
+db.restaurent.find({},{restaurant_id:1,name:1,borough:1,cuisine:1})
+
+db.restaurent.find({cuisine:{$ne:'American','Chinese'}})
+
+db.restaurent.find({cuisine:{$nin:['American','Chinees']}})
+
+db.restaurent.find({$or:[{cuisine:{$nin:['American','Chinees']}},{name:/^Wil/}]})
+
+db.restaurent.find({'grades.grade':'A','grades.score':11,'grades.date':"2014-08-11T00:00:00Z"})
+
+
+db.student.insertOne({
+  sno:01,
+  sname:'Shiva',
+  std:10,
+  address:{roadNo:1,pincode:4150001,aptname:'Krushna'},
+  contactNo:123456789,
+  classTeacher:'Sonali'
+})
+
+db.student.insertMany([{
+  sno:02,
+  sname:'faraz',
+  std:1,
+  address:{roadNo:2,pincode:4150001,aptname:'Krushna'},
+  contactNo:123456785,
+  classTeacher:'megha'
+  },
+ { 
+ sno:03,
+  sname:'faraz',
+  std:1,
+  address:{roadNo:2,pincode:4150001,aptname:'Krushna'},
+  contactNo:123456785,
+  classTeacher:'megha'
+  },
+  {
+  sno:03,
+  sname:'faraz',
+  std:1,
+  address:{roadNo:2,pincode:4150001,aptname:'Krushna'},
+  contactNo:123456785,
+  classTeacher:'megha'
+  },
+  {
+  sno:04,
+  sname:'faraz',
+  std:1,
+  address:{roadNo:2,pincode:4150001,aptname:'Krushna'},
+  contactNo:123456785,
+  classTeacher:'megha'
+  }])
+  
+  
+  
+  db.app.insertMany(
+  [{
+  name:'bgmi',
+  place:'mumbai',
+  nop:3}
+  ,{
+  name:'frefir',
+  place:'pune',
+  nop:45}])
+  Change the status of books “undergoing change” for books having more than 500
+pages and published in 2009
+
+
+4. Find all the books containing word highlighting and depth in long description of the
+book
+db.book.find({longDescription:/highlighting/,longDescription:/depth/},{title:1,_id:1})
+  
+  
+  
+   db.book.updateMany({pageCount:{$gt:500},$expr:{$eq:[{$year:'$publishedDate'},2009]}},{$set:{status:'undergoing change'}})
+   
+   db.book.updateMany({pageCount:{$gt:500},publishedDate:{$gte:ISODate('2009-01-01'),$lt:ISODate('2010-01-01')}},{$set:{ status:'undergoing change'}});
+
+   
+db.book.find({$expr:{$eq:[{$year:'$publishedDate'},2009]}})
+
+db.book.find({pageCount:{$gt:500}},{$set:{status:'undergoing'}})
+
+
+
+5. Display all books published in 2009
+
+6. Find all books with pageCount is either 500 or 556 or 670
+7. Add 2 categories “kindle” and “hard bind” in all the books if its pageCount >200 and
+< 500 or number of pages >500
+db.book.updateMany({$or:[{pageCount:{$gt:200,$lt:500}},{pageCount:{$gt:500}}]},{$push:{categories:{$each:['kindle','hard bind']}}})
+
+8. List all the books which has thumbnailUrl key
+db.book.find({pageCount:{$exists:true}})
+
+9. Add key type with values [“fiction”,”moral stories”,”adventurous”] in all books
+db.book.updateMany({},{$push:{values:{$each:['fiction','moral stories','adventurous']}}})
+whose title starts with Fl and contains a some where in the name
+10. Add a key comments :[{comment:” like the book” ,date:ISODate(“2019-09-01”)},
+db.book.updateMany({},{$push:{'comments':{$each:[{comment:'like the book'},{date:ISODate('2019-09-01')}]}}})
+11. Add new author “myauthor” at position 2 for all books whose title starts with h or m
+and contains s at 2nd last position
+db.book.updateMany({title:{$regex:/^[hm]/i,$regex:/s.$/i}},{$push:{authors:['myauthor'],$position:2}})
+12. Increase pageCount by 100 for all books whose author at 1 st position is “Gal
+Shachor”
+db,book.updateMany({'authors.0':'Gal Shachor'},{$inc:{pageCount:100}})
+13. Overwrite “Magnus Rydin" with name “Fr”
+14. List all books title, status, pageCount, comments for all books with pages > 300 or <
+500 or title starts with a or isbn starts with 193
+
+
+db.book.find({publishedDate:{$gte:ISODate('2009-01-01'),$lt:ISODate('2010-01-01')}})
+db.book.find({pageCount:{$in:[500,556,670]}},{title:1,_id:1})
+
+db.book.updateMany({title:{$regex:/^[hm]/i},title:{$regex: /s.$/i }},{$push:{authors:{$each:["myauthor"],$position: 2}}});
+
+db.book.updateMany({$or: [{ title: { $regex: /^h.*s.$/i } }, { title: { $regex: /^m.*s.$/i } } ]},{ $push: { authors: { $each: ["myauthor"], $position: 1 } } })
+
+db.book.updateMany
